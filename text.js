@@ -1,7 +1,12 @@
 // console.log out put type
 
-console.log("hi")
-console.log warning("hi")
+// console.log("hi")
+// console.warn("hi")
+// console.error("hi")
+// alert("hi")
+// prompt("hi")
+// confirm("hi")
+// document.write("hi")
 
 // variable "var" redeclare and reassign
 // var name ="jude"
