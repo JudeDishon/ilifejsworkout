@@ -82,3 +82,40 @@
 // console.log(10>20 ?"correct":"wrong")  //terinary op
 
 
+// number--method
+
+    // <!-- toFixed() , Number() , isNaN() , isFinite() , parseInt() , parseFloat() , Math.sqrt() , Math.ceil() , Math.floor() , Math.random() -->
+
+
+    // var a = 1000
+    // console.log(a.toFixed())    //toFixed
+    // a=Number(a)              //Number()
+    // console.log(typeof(a)) 
+    // console.log(typeof(Number(a.toFixed())))
+    // console.log(isNaN(a))   //isNan
+    // console.log(isFinite(a)) //isFinite()
+    // console.log(parseInt(a))   //ParseInt()
+    // console.log(parseFloat(a))  //ParseFloat()
+    // console.log(Math.sqrt(a))   //math.sqrt()
+    // console.log(Math.floor(a))   //Math.floor
+    // console.log(Math.floor(Math.random()))  //math.random
+
+
+//  string method
+    //  <!-- length  , indexOf , charAt , includes , toUpperCase , toLowerCase ,substr, replace , trimStart , trimEnd , trim , toString  -->
+    
+    // var b = "hello world"
+    //  console.log(b.length)   //length()
+    //  console.log(b.indexOf("j"))  //indexof()
+    //  console.log(b.charAt())   //charAt()
+    // console.log(b.includes('j'))  //includes()
+    // console.log(b.toUpperCase())  //upper and lower
+    // console.log(b.substr(0,5))  //substr
+    // console.log(b.replace("j","y"))  replace
+    // console.log(b.trim())   //trimEnd,start,trim
+    //  console.log(typeof(b.toString()))   //toString()
+    
+
+    // DOM 
+//    var data = document.querySelector("div")
+//    data.innerText="<h1>hello</h2>"

@@ -110,6 +110,19 @@ let arr = ["mahes",20,true,{name:"mahes",age:20},[1,2,3,45]]
 
 
 
+// document.getElementById("h1tag").innerHTML = "division"
+// let data = document.getElementsByClassName("headingclass")[1].style
+// let data = document.getElementsByTagName(".")[0].style
+// let data = document.querySelectorAll(".headingclass")[0].style
+
+// document.getElementById("division").innerHTML = "<h1>hello world</h1>"
+
+// data.color = "red"
+
+// data.backgroundColor ="yellow"
+
+
+// data.border = "2px solid black"
 
 
 
