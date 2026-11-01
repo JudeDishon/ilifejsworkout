@@ -119,3 +119,118 @@
     // DOM 
 //    var data = document.querySelector("div")
 //    data.innerText="<h1>hello</h2>"
+
+
+
+  //function
+
+//   function fun1(){
+//     console.log("hi")
+//   }
+//   fun1()
+
+//   function parafun(a){
+//     console.log(a)
+//   }
+//   parafun(10)
+
+// function fun2() {
+//     var a =10;
+//   console.log(a)
+//   fun3(a)
+// }
+// fun2()
+
+// function fun3(a){
+//     console.log(a)
+// }
+
+
+// if ,else ,elseif,nestedif,switch case
+
+// var a =100
+// var b =200
+
+// if(a>b){
+//     console.log("correct")
+//  } else if(a==b){
+//         console.log("correct2")
+//  }else{
+//     console.log("wrong")
+// }
+
+// function nestedfun(a,b){
+//     if(typeof(a)===typeof(b)){
+//         if(a>b){
+//             console.log("correct")
+//         }else{
+//             console.log("wrong")
+//         }
+//     }else{
+//         console.log("verywrong")
+//     }
+// }
+// nestedfun(10,"10")
+
+// var a = 2 
+// switch(a){
+//     case 1:{
+//         console.log("correct")
+//     }
+//     case 2:{
+//         console.log("crt2")
+//     };
+//     break;
+//     default:{
+//         console.log("wrong")
+//     }
+// }
+
+// function casefun(a){
+//     switch(a){
+//         case 1:{
+//             console.log("crt")
+//         }
+//         case 2:{
+//             console.log('crt2')
+//         }
+//         break;
+//         default:{
+//             console.log('right')
+//         }
+//     }
+// }
+//   casefun(10)
+
+// onclick
+// var count = 0
+// function textchange(){
+// var h1 = document.getElementById("h1tag")
+// if(count==0){
+// h1.innerHTML="hello"
+// count++
+// }
+// else{
+// h1.innerHTML="hai"
+// count--
+// }
+// }
+
+// preventdefault
+// function sumitfun(e){
+//     e.preventDefault()
+//   var a = document.getElementsByClassName("input1")[0].value
+//   var b = document.getElementsByClassName("input2")[0].value
+//   console.log(a,b)
+// }
+
+// function sumitfun(e){
+//     e.preventDefault()
+//   var a = document.getElementsByClassName("input1")[0].value
+//   var b = document.getElementsByClassName("input2")[0].value
+//   var c =Number(a) + Number(b)
+//     document.getElementById("answer").innerHTML=` ${a} + ${b} = ${c}`
+// }
+
+
+

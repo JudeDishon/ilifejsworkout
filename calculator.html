@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Calculator</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial;
+        }
+
+        .calculator {
+            background: #333;
+            padding: 20px;
+            width: 300px;
+            border-radius: 15px;
+        }
+
+        #output {
+            background: #eee;
+            color: black;
+            height: 65px;
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 25px;
+            text-align: right;
+            overflow: auto;
+            box-sizing: border-box;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        button {
+            height: 55px;
+            font-size: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .operator {
+            background: orange;
+        }
+
+        .equal {
+            background: #29a36a;
+            color: white;
+        }
+
+        .clear {
+            background: #e74c3c;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <div id="output">0</div>
+
+    <div class="buttons">
+
+        <button class="clear" onclick="clearfun()">C</button>
+        <button onclick="deletefun()">DEL</button>
+        <button onclick="numfun('(')">(</button>
+        <button onclick="numfun(')')">)</button>
+
+        <button onclick="numfun('7')">7</button>
+        <button onclick="numfun('8')">8</button>
+        <button onclick="numfun('9')">9</button>
+        <button class="operator" onclick="opfun('/')">/</button>
+
+        <button onclick="numfun('4')">4</button>
+        <button onclick="numfun('5')">5</button>
+        <button onclick="numfun('6')">6</button>
+        <button class="operator" onclick="opfun('*')">*</button>
+
+        <button onclick="numfun('1')">1</button>
+        <button onclick="numfun('2')">2</button>
+        <button onclick="numfun('3')">3</button>
+        <button class="operator" onclick="opfun('-')">-</button>
+
+        <button onclick="numfun('0')">0</button>
+        <button onclick="numfun('.')">.</button>
+        <button class="equal" onclick="sumfun()">=</button>
+        <button class="operator" onclick="opfun('+')">+</button>
+
+        <button class="operator" onclick="opfun('%')">%</button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let expression = "";
+
+
+// NUMBER FUNCTION
+
+function numfun(value) {
+
+    expression = expression + value;
+
+    document.getElementById("output").innerHTML = expression;
+
+}
+
+
+// OPERATOR FUNCTION
+
+function opfun(value) {
+
+    expression = expression + value;
+
+    document.getElementById("output").innerHTML = expression;
+
+}
+
+
+// CLEAR FUNCTION
+
+function clearfun() {
+
+    expression = "";
+
+    document.getElementById("output").innerHTML = "0";
+
+}
+
+
+// DELETE FUNCTION
+
+function deletefun() {
+
+    expression = expression.slice(0, -1);
+
+    document.getElementById("output").innerHTML =
+        expression || "0";
+
+}
+
+
+// CALCULATION FUNCTION
+
+function calculate(exp) {
+
+    let tokens = exp.match(/\d+(\.\d*)?|\.\d+|[()+\-*/%]/g);
+
+    if (!tokens || tokens.join("") !== exp) {
+        throw new Error("Invalid Expression");
+    }
+
+    let output = [];
+    let operators = [];
+
+    let priority = {
+        "+": 1,
+        "-": 1,
+        "*": 2,
+        "/": 2,
+        "%": 2,
+        "u-": 3
+    };
+
+    // FIRST LOOP
+
+    for (let i = 0; i < tokens.length; i++) {
+
+        let token = tokens[i];
+
+        if (!isNaN(token)) {
+
+            output.push(Number(token));
+
+        }
+
+        else if (token == "(") {
+
+            operators.push(token);
+
+        }
+
+        else if (token == ")") {
+
+            while (
+                operators.length > 0 &&
+                operators[operators.length - 1] != "("
+            ) {
+                output.push(operators.pop());
+            }
+
+            if (operators.pop() != "(") {
+                throw new Error("Bracket Error");
+            }
+
+        }
+
+        else {
+
+            let op = token;
+
+            if (
+                op == "-" &&
+                (
+                    i == 0 ||
+                    ["+", "-", "*", "/", "%", "("].includes(tokens[i - 1])
+                )
+            ) {
+                op = "u-";
+            }
+
+            while (
+                operators.length > 0 &&
+                operators[operators.length - 1] != "(" &&
+                (
+                    priority[operators[operators.length - 1]] > priority[op] ||
+                    (
+                        priority[operators[operators.length - 1]] == priority[op] &&
+                        op != "u-"
+                    )
+                )
+            ) {
+                output.push(operators.pop());
+            }
+
+            operators.push(op);
+
+        }
+
+    }
+
+    while (operators.length > 0) {
+
+        let op = operators.pop();
+
+        if (op == "(") {
+            throw new Error("Bracket Error");
+        }
+
+        output.push(op);
+
+    }
+
+
+    // SECOND LOOP
+
+    let numbers = [];
+
+    for (let item of output) {
+
+        if (typeof item == "number") {
+
+            numbers.push(item);
+
+        }
+
+        else if (item == "u-") {
+
+            let a = numbers.pop();
+
+            numbers.push(-a);
+
+        }
+
+        else {
+
+            let b = numbers.pop();
+            let a = numbers.pop();
+
+            let answer;
+
+            if (item == "+") {
+                answer = a + b;
+            }
+
+            else if (item == "-") {
+                answer = a - b;
+            }
+
+            else if (item == "*") {
+                answer = a * b;
+            }
+
+            else if (item == "/") {
+                answer = a / b;
+            }
+
+            else if (item == "%") {
+                answer = a % b;
+            }
+
+            numbers.push(answer);
+
+        }
+
+    }
+
+    if (numbers.length != 1) {
+        throw new Error("Invalid Calculation");
+    }
+
+    return numbers[0];
+
+}
+
+
+// EQUAL FUNCTION
+
+function sumfun() {
+
+    try {
+
+        let answer = calculate(expression);
+
+        if (Number.isNaN(answer)) {
+            throw new Error("Invalid Calculation");
+        }
+
+        answer = Number.isFinite(answer)
+            ? Number(answer.toPrecision(12))
+            : answer;
+
+        document.getElementById("output").innerHTML = answer;
+
+        expression = String(answer);
+
+    }
+
+    catch (error) {
+
+        document.getElementById("output").innerHTML = "Error";
+
+        expression = "";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
