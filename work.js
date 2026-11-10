@@ -234,3 +234,209 @@
 
 
 
+// arrow fun 
+
+// const arrowfun = () =>{
+//     console.log("hello")
+// }
+
+// arrowfun()  
+
+// set time out
+
+// function setfun () {
+//     console.log("helloworld")
+// }
+// setTimeout(setfun,2000)
+
+// setTimeout(() => {
+//    console.log('hi') 
+// }, 5000);
+
+// set intervel
+
+// function interfun (){
+//     let date = new Date ()
+//     console.log(date.getFullYear())
+// }
+// setInterval(interfun,2000)
+
+// for,while,do while 
+
+
+// for(password = prompt("enter the password");password!='1234';){
+// password = prompt("enter the password")
+// }
+// console.log("successful")
+
+// for(i=0;i<=10;i++){
+//     console.log(i)
+// }
+
+// let i = 1
+// while(i<=10){
+//     console.log(i)
+//     i++
+// }
+
+
+// let password =  prompt("enter the password")
+// while(password!='1234'){
+//     prompt("enter the password")
+// }
+// console.log("login successful")
+
+
+// do while 
+// let a = 1
+// do {
+//     console.log(a)
+//  a++
+// }while(a<=5)
+//    let a
+//     do{
+    
+//         a =  prompt("enter the password")
+//     }while(a!='123');
+//     console.log("login successful")
+
+
+// stare pattern  work out pannala
+// for (let i = 1; i <= 5; i++) {
+//     let row = "";
+//     console.log(row);
+    
+//     for (let j = 1; j <= i; j++) {
+//         row += "*" 
+//     }
+
+//     console.log(row);
+// }
+
+
+
+
+// async  await 
+
+// blocking
+// non - blocking
+
+// async function getData() {
+//     let url = await fetch("https://jsonplaceholder.typicode.com/users")
+//     let data = await url.json();
+//     console.log("data", data);
+// }
+// getData()
+
+// array method 
+// push ,pop , shift , unshift  , concat , sort , join , reverse ,split ,slice,splice
+// map , filter , find
+
+// let arr = [1, 2,3,4,5]
+// let arr2 =[6,7,8,9]
+// console.log(arr.pop());
+// console.log(arr)
+// console.log(arr.push(6))
+// console.log(arr)
+// console.log(arr.shift())
+// console.log(arr)
+// console.log(arr.unshift(0))
+// console.log(arr)
+// console.log(arr.concat(arr2))
+// console.log(arr2.concat(arr))
+
+
+// let arr12 = ["az","a", "b", "a"]
+// let arr13 = "judedishon"
+// console.log(arr12.sort());
+// console.log(arr12.join())
+// console.log(arr12.reverse())
+// console.log(arr13.split(""))
+// console.log(arr12.slice(0,2))
+// console.log(arr12.splice(0,2,"jude"))
+// console.log(arr12)
+
+// let arry = [1, 2, 2, 3, 4, 5]
+
+// console.log(arry.map((value,index)=>value==2))
+// console.log(arry.find((v,i)=> v == 2));
+// console.log(arry.filter((v,i)=> v == 2));
+
+
+
+
+// async function getData() {
+//     let url = await fetch("https://jsonplaceholder.typicode.com/users")
+//     let data = await url.json();
+//     console.log("data", data);
+
+//     let showdata = ""
+//     data.map((v, i) => (
+//         showdata += `
+//          <div class="col-lg-3">
+//       <div class="card">
+//       ${v.name}
+//       </div>
+//      </div>
+//         `
+//     ))
+
+//     document.getElementById("name").innerHTML = showdata
+// }
+
+// getData()
+
+// map filter method 
+
+let products = [
+    {id:1,name:"redmi",price:2000,image:"realme.png"},
+    {id:2,name:"redmi",price:40000,image:"realme.png"},
+    {id:3,name:"redmi",price:80000,image:"realme.png"},
+]
+
+function showdata() {
+    let data =""
+    products.map((value,index)=>(
+     data +=`
+      <div class="col-3">
+      <div class="card">
+        <img src="${value.image}" alt="" width=100% height=200px>
+        <div class="card-body">
+          <p class="card-text">${value.name}</p>
+          <p class="card-text">${value.price}</p>
+        </div>
+        
+      </div>
+    </div>
+    `
+))
+    document.getElementById("name").innerHTML=data
+
+}
+showdata()
+
+
+function searchfun(e){
+    e.preventDefault()
+    let searchdata=document.getElementById("search").value
+    let outputdata = products.filter((value,index)=> value.name.toLowerCase().trim().includes(searchdata.toLowerCase().trim()) )
+    console.log(outputdata)
+    let data=""
+    outputdata.map((value,index)=>(
+        data+= `
+         <div class="col-3">
+      <div class="card">
+        <img src="${value.image}" alt="" width=100% height=200px>
+        <div class="card-body">
+          <p class="card-text">${value.name}</p>
+          <p class="card-text">${value.price}</p>
+        </div>
+        
+      </div>
+    </div>
+        `
+    ))
+
+    document.getElementById("searchOutput").innerHTML = data
+
+}
